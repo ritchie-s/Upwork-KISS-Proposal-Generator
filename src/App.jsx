@@ -177,8 +177,12 @@ Return ONLY a JSON object with this exact structure (no markdown, no backticks):
           </div>
         </div>
 
-        <div className="mt-6 text-center text-sm text-gray-600 space-y-2">
-  <p>✨ A client dust for you </p>
-  <p className="text-xs text-gray-500">
-    Created by <span className="font-semibold">Ritchie Labus Suico</span> | © 2025 All Rights Reserved </p>
-</div>
+        <div className="mt-6 text-center text-sm text-gray-600">
+          <p>✨ Client dash for you ✨ </p>
+        <p className="text-xs text-gray-500">
+            Created by <span className="font-semibold">Ritchie L. Suico</span> | © 2025 All Rights Reserved </p>
+        </div>
+      </div>
+    </div>
+  );
+}
