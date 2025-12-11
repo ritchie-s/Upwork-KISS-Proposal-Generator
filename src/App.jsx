@@ -177,10 +177,9 @@ Return ONLY a JSON object with this exact structure (no markdown, no backticks):
           </div>
         </div>
 
-        <div className="mt-6 text-center text-sm text-gray-600">
-          <p>✨ Keep it casual, keep it real, keep it relevant</p>
-        </div>
-      </div>
-    </div>
-  );
-}
+        <div className="mt-6 text-center text-sm text-gray-600 space-y-2">
+  <p>✨ Keep it casual, keep it real, keep it relevant</p>
+  <p className="text-xs text-gray-500">
+    Created by <span className="font-semibold">Ritchie Labus Suico</span> | © 2025 All Rights Reserved
+  </p>
+</div>
