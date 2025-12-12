@@ -44,8 +44,8 @@ export default function UpworkKISSGenerator() {
       
       setProposal(parsed.proposal);
       setSpecialInstructions(parsed.special_instructions_found || []);
-    }
-    } catch (error) {
+    } catch (err) {
+      // Keep the existing catch block - don't change this part
       console.error('Error:', error);
       alert('Failed to generate proposal. Please try again.');
     } finally {
