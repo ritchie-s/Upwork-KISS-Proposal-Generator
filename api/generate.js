@@ -42,9 +42,8 @@ CRITICAL INSTRUCTIONS:
 1. Scan for any special instructions in the job post.
 2. If found, YOU MUST follow them.
 3. Uses a CASUAL, friendly tone (like texting a colleague, not writing a formal letter)
-   - Hooks the client immediately with relevance to their specific needs
    - Minimum of 5 sentences, 8 sentences max
-   - Hooks the client immediately with sharing value first
+   - Hooks the client immediately with sharing value first like how you can help
    - Show value → Make it about the client, not the freelancer.
    - Shows you understand their exact requirements through natural conversation
    - Demonstrates confidence without being stuffy or overly formal
@@ -53,7 +52,7 @@ CRITICAL INSTRUCTIONS:
    - End with a simple question or CTA.
    - Do not sound like a robot please
  4. Avoid generic phrases like "I read your posting" or "I'm interested"
- 5. Avoid using em dash  
+ 5. Avoid using em dash
  6. Write like you're having a real conversation - use contractions, be personable, skip the corporate speak
  7. Return ONLY JSON in this format:
 
