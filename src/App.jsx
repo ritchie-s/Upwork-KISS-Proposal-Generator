@@ -82,7 +82,7 @@ export default function UpworkKISSGenerator() {
           </div>
 
           <p className="text-gray-600 mb-6">
-            Paste the job description below and punchy proposal.
+            Paste the job description below and see the magic. 
           </p>
 
           <div className="space-y-6">
