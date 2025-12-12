@@ -1,4 +1,14 @@
 export default async function handler(req, res) {
+  // Enable CORS
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  // Handle preflight
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
   // Only allow POST requests
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -8,6 +18,13 @@ export default async function handler(req, res) {
 
   if (!description) {
     return res.status(400).json({ error: 'Description is required' });
+  }
+
+  // Check if API key exists
+  if (!process.env.ANTHROPIC_API_KEY) {
+    return res.status(500).json({ 
+      error: 'API key not configured. Please add ANTHROPIC_API_KEY to environment variables.' 
+    });
   }
 
   try {
@@ -34,7 +51,7 @@ CRITICAL INSTRUCTIONS:
 2. If found, YOU MUST follow these instructions in your proposal
 3. Create a compelling 2-4 sentence proposal that:
    - Uses a CASUAL, friendly tone (like texting a colleague, not writing a formal letter)
-   - Hooks the client immediately with relevance to their specific needs
+   - Hooks the client immediately with sharing value first
    - Shows you understand their exact requirements through natural conversation
    - Demonstrates confidence without being stuffy or overly formal
    - Gets straight to the solution in a relaxed way
@@ -54,7 +71,10 @@ Return ONLY a JSON object with this exact structure (no markdown, no backticks):
 
     if (!response.ok) {
       const errorData = await response.json();
-      return res.status(response.status).json({ error: errorData.error?.message || 'API request failed' });
+      console.error('Anthropic API error:', errorData);
+      return res.status(response.status).json({ 
+        error: errorData.error?.message || 'API request failed' 
+      });
     }
 
     const data = await response.json();
@@ -66,7 +86,9 @@ Return ONLY a JSON object with this exact structure (no markdown, no backticks):
     
     return res.status(200).json(parsed);
   } catch (error) {
-    console.error('Error:', error);
-    return res.status(500).json({ error: error.message || 'Internal server error' });
+    console.error('Server error:', error);
+    return res.status(500).json({ 
+      error: error.message || 'Internal server error' 
+    });
   }
 }
