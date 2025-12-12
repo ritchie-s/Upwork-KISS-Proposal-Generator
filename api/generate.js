@@ -43,7 +43,7 @@ CRITICAL INSTRUCTIONS:
 2. If found, YOU MUST follow them.
 3. Uses a CASUAL, friendly tone (like texting a colleague, not writing a formal letter)
    - Hooks the client immediately with relevance to their specific needs
-   - Minimum of 4 lines, 8 lines max
+   - Minimum of 5 lines, 8 lines max
    - Hooks the client immediately with sharing value first
    - Show value → Make it about the client, not the freelancer.
    - Shows you understand their exact requirements through natural conversation
@@ -51,6 +51,7 @@ CRITICAL INSTRUCTIONS:
    - Gets straight to the solution in a relaxed way
    - Makes complete sense despite being brief
    - End with a simple question or CTA.
+   - Do not sound like a robot please
 4. Return ONLY JSON in this format:
 
 {
