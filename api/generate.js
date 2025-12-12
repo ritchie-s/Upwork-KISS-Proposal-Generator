@@ -53,8 +53,9 @@ CRITICAL INSTRUCTIONS:
    - End with a simple question or CTA.
    - Do not sound like a robot please
  4. Avoid generic phrases like "I read your posting" or "I'm interested"
- 5. Write like you're having a real conversation - use contractions, be personable, skip the corporate speak
- 6. Return ONLY JSON in this format:
+ 5. Avoid using em dash  
+ 6. Write like you're having a real conversation - use contractions, be personable, skip the corporate speak
+ 7. Return ONLY JSON in this format:
 
 {
   "proposal": "text",
