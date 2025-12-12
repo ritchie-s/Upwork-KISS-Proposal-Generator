@@ -7,6 +7,7 @@ export default function UpworkKISSGenerator() {
   const [specialInstructions, setSpecialInstructions] = useState([]);
   const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [error, setError] = useState('');
 
   const generateProposal = async () => {
     if (!description.trim()) {
@@ -17,6 +18,7 @@ export default function UpworkKISSGenerator() {
     setLoading(true);
     setProposal('');
     setSpecialInstructions([]);
+    setError('');
 
     try {
       console.log('Calling backend API...');
@@ -45,8 +47,15 @@ export default function UpworkKISSGenerator() {
       setProposal(parsed.proposal);
       setSpecialInstructions(parsed.special_instructions_found || []);
     } catch (err) {
-      console.error('Error:', error);
-      alert('Failed to generate proposal. Please try again.');
+      console.error('Full error:', err);
+      
+      if (err.message.includes('Failed to fetch') || err.message.includes('NetworkError')) {
+        setError('❌ Network Error: Unable to reach the server. Please check your connection.');
+      } else if (err.message.includes('API key')) {
+        setError('❌ API Key Issue: The API key is missing or invalid.');
+      } else {
+        setError(`❌ Error: ${err.message}`);
+      }
     } finally {
       setLoading(false);
     }
@@ -64,13 +73,16 @@ export default function UpworkKISSGenerator() {
         <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8">
           <div className="flex items-center gap-3 mb-6">
             <Sparkles className="w-8 h-8 text-indigo-600" />
-            <h1 className="text-3xl font-bold text-gray-800">
-              Upwork KISS Proposal Generator
-            </h1>
+            <div>
+              <h1 className="text-3xl font-bold text-gray-800">
+                Upwork KISS Proposal Generator
+              </h1>
+              <p className="text-sm text-gray-500 mt-1">by Ritchie L. Suico</p>
+            </div>
           </div>
 
           <p className="text-gray-600 mb-6">
-            Paste the job description below and get a casual, punchy proposal that sounds like you're actually talking to a human.
+            Paste the job description below and punchy proposal.
           </p>
 
           <div className="space-y-6">
@@ -103,6 +115,17 @@ export default function UpworkKISSGenerator() {
                 </>
               )}
             </button>
+
+            {error && (
+              <div className="bg-red-50 border-2 border-red-200 rounded-xl p-4">
+                <div className="flex items-start gap-3">
+                  <AlertCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
+                  <div className="flex-1">
+                    <p className="text-sm text-red-800 whitespace-pre-wrap">{error}</p>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {proposal && (
               <div className="mt-8 space-y-6 animate-in fade-in duration-500">
@@ -154,10 +177,11 @@ export default function UpworkKISSGenerator() {
           </div>
         </div>
 
-        <div className="mt-6 text-center text-sm text-gray-600">
-          <p>✨ Client dust for you ✨ </p>
-        <p className="text-xs text-gray-500">
-            Created by <span className="font-semibold">Ritchie L. Suico</span> | © 2025 All Rights Reserved </p>
+        <div className="mt-6 text-center text-sm text-gray-600 space-y-2">
+          <p>✨ Client Dust For You. All Glory To GOd ✨</p>
+          <p className="text-xs text-gray-500">
+            Created by <span className="font-semibold">Ritchie L. Suico</span> | © 2025 All Rights Reserved
+          </p>
         </div>
       </div>
     </div>
