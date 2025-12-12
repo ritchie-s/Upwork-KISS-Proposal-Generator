@@ -41,11 +41,16 @@ ${description}
 CRITICAL INSTRUCTIONS:
 1. Scan for any special instructions in the job post.
 2. If found, YOU MUST follow them.
-3. Create a 2–4 sentence casual, friendly proposal:
-   - Short lines, max 4–6
-   - No corporate tone
-   - Directly relevant to the client
-   - No generic filler
+3. Uses a CASUAL, friendly tone (like texting a colleague, not writing a formal letter)
+   - Hooks the client immediately with relevance to their specific needs
+   - Minimum of 4 lines, 8 lines max
+   - Hooks the client immediately with sharing value first
+   - Show value → Make it about the client, not the freelancer.
+   - Shows you understand their exact requirements through natural conversation
+   - Demonstrates confidence without being stuffy or overly formal
+   - Gets straight to the solution in a relaxed way
+   - Makes complete sense despite being brief
+   - End with a simple question or CTA.
 4. Return ONLY JSON in this format:
 
 {
