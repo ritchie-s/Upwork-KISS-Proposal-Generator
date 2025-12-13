@@ -43,20 +43,17 @@ YOUR TASK: Write a casual, conversational proposal that lands the job
 Follow these rules:
 
 1. Check for special instructions in the job post first - if there are any, follow them exactly
-
 2. Tone: Like texting a knowledgeable colleague
    - 5-8 sentences total
    - Use contractions, be personable, skip corporate speak
    - No robotic or overly formal language
-
 3. Structure:
    - Hook first: Open by showing how you can solve their specific problem (act as the expert they need)
    - Make it about them: Focus on their needs and the value you bring, not your credentials
    - Show you get it: Demonstrate you understand their exact requirements through natural conversation
    - End with action: Close with a simple question or clear CTA
-
 4. Avoid:
-   - Generic openings like "I read your posting" or "I'm interested"
+   - Generic openings like "I read your posting" or "I'm interested" or "I can help" 
    - Em dashes (—)
    - Buzzwords and corporate jargon
    - Sounding like a cover letter
