@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Copy, Sparkles, AlertCircle } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Copy, Sparkles, AlertCircle, Lock } from 'lucide-react';
 
 export default function UpworkKISSGenerator() {
   const [description, setDescription] = useState('');
@@ -8,10 +8,50 @@ export default function UpworkKISSGenerator() {
   const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState(false);
   const [error, setError] = useState('');
+  
+  // NEW: Usage tracking
+  const [usageCount, setUsageCount] = useState(0);
+  const [dailyLimit] = useState(3);
+
+  // NEW: Load usage data on mount
+  useEffect(() => {
+    const storedData = localStorage.getItem('kissProposalUsage');
+    if (storedData) {
+      const { count, date } = JSON.parse(storedData);
+      const today = new Date().toDateString();
+      
+      if (date !== today) {
+        localStorage.setItem('kissProposalUsage', JSON.stringify({ count: 0, date: today }));
+        setUsageCount(0);
+      } else {
+        setUsageCount(count);
+      }
+    } else {
+      const today = new Date().toDateString();
+      localStorage.setItem('kissProposalUsage', JSON.stringify({ count: 0, date: today }));
+    }
+  }, []);
+
+  // NEW: Check if limit reached
+  const isLimitReached = usageCount >= dailyLimit;
+  const remainingUses = dailyLimit - usageCount;
+
+  // NEW: Increment usage after successful generation
+  const incrementUsage = () => {
+    const newCount = usageCount + 1;
+    const today = new Date().toDateString();
+    localStorage.setItem('kissProposalUsage', JSON.stringify({ count: newCount, date: today }));
+    setUsageCount(newCount);
+  };
 
   const generateProposal = async () => {
     if (!description.trim()) {
       alert('Please paste a job description first');
+      return;
+    }
+
+    // NEW: Check limit
+    if (isLimitReached) {
       return;
     }
 
@@ -46,6 +86,9 @@ export default function UpworkKISSGenerator() {
       
       setProposal(parsed.proposal);
       setSpecialInstructions(parsed.special_instructions_found || []);
+      
+      // NEW: Increment count after success
+      incrementUsage();
     } catch (err) {
       console.error('Full error:', err);
       
@@ -71,19 +114,64 @@ export default function UpworkKISSGenerator() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 md:p-8">
       <div className="max-w-4xl mx-auto">
         <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8">
-          <div className="flex items-center gap-3 mb-6">
-            <Sparkles className="w-8 h-8 text-indigo-600" />
-            <div>
-              <h1 className="text-3xl font-bold text-gray-800">
-                Upwork KISS Proposal Generator
-              </h1>
-              <p className="text-sm text-gray-500 mt-1">by Ritchie L. Suico</p>
+          {/* EXISTING HEADER - with added counter */}
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-3">
+              <Sparkles className="w-8 h-8 text-indigo-600" />
+              <div>
+                <h1 className="text-3xl font-bold text-gray-800">
+                  Upwork KISS Proposal Generator
+                </h1>
+                <p className="text-sm text-gray-500 mt-1">by Ritchie L. Suico</p>
+              </div>
+            </div>
+            {/* NEW: Usage counter */}
+            <div className="text-right">
+              {isLimitReached ? (
+                <span className="text-sm font-semibold text-red-600">Limit reached</span>
+              ) : (
+                <div className="text-sm">
+                  <span className="font-bold text-indigo-600 text-xl">{remainingUses}</span>
+                  <span className="text-gray-500"> / 3 free today</span>
+                </div>
+              )}
             </div>
           </div>
 
           <p className="text-gray-600 mb-6">
-            Paste the job description below and see the magic. 
+            Paste the job description below and get a casual, punchy proposal that sounds like you're actually talking to a human. Automatically detects and follows special instructions too.
           </p>
+
+          {/* NEW: Upgrade prompt when limit reached */}
+          {isLimitReached && (
+            <div className="mb-6 bg-gradient-to-r from-purple-50 to-pink-50 border-2 border-purple-300 rounded-xl p-6">
+              <div className="flex items-start gap-3">
+                <Lock className="w-6 h-6 text-purple-600 flex-shrink-0 mt-1" />
+                <div className="flex-1">
+                  <h3 className="text-lg font-bold text-purple-900 mb-2">
+                    Daily limit reached! 🚀
+                  </h3>
+                  <p className="text-purple-800 mb-3">
+                    Upgrade to Pro for unlimited proposals and win more clients.
+                  </p>
+                  <div className="bg-white rounded-lg p-4 mb-3 border border-purple-200">
+                    <div className="font-bold text-gray-900 mb-2">Pro - $5/month</div>
+                    <ul className="space-y-1 text-sm text-gray-700">
+                      <li>✓ 100 proposals/month</li>
+                      <li>✓ No daily limits</li>
+                      <li>✓ Priority support</li>
+                    </ul>
+                  </div>
+                  <button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 px-6 rounded-lg">
+                    Upgrade to Pro
+                  </button>
+                  <p className="text-xs text-center text-purple-600 mt-2">
+                    Or come back tomorrow for 3 more free proposals
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
 
           <div className="space-y-6">
             <div>
@@ -95,15 +183,21 @@ export default function UpworkKISSGenerator() {
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Paste the Upwork job description here..."
                 className="w-full h-48 px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition-all resize-none"
+                disabled={isLimitReached}
               />
             </div>
 
             <button
               onClick={generateProposal}
-              disabled={loading || !description.trim()}
+              disabled={loading || !description.trim() || isLimitReached}
               className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-400 text-white font-semibold py-3 px-6 rounded-lg transition-colors flex items-center justify-center gap-2"
             >
-              {loading ? (
+              {isLimitReached ? (
+                <>
+                  <Lock className="w-5 h-5" />
+                  Upgrade to Continue
+                </>
+              ) : loading ? (
                 <>
                   <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
                   Generating...
@@ -178,7 +272,7 @@ export default function UpworkKISSGenerator() {
         </div>
 
         <div className="mt-6 text-center text-sm text-gray-600 space-y-2">
-          <p>✨ Client Dust For You. All Glory To GOd ✨</p>
+          <p>✨ Client Dust For You. All Glory To God ✨</p>
           <p className="text-xs text-gray-500">
             Created by <span className="font-semibold">Ritchie L. Suico</span> | © 2025 All Rights Reserved
           </p>
