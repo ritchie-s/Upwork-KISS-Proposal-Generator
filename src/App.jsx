@@ -274,7 +274,7 @@ export default function UpworkKISSGenerator() {
         <div className="mt-6 text-center text-sm text-gray-600 space-y-2">
           <p>✨ Client Dust For You. All Glory To God ✨</p>
           <p className="text-xs text-gray-500">
-            Created by <span className="font-semibold">Ritchie L. Suico</span> | © 2025 All Rights Reserved
+            Created by <span className="font-semibold">Ritchie </span> | © 2025 All Rights Reserved
           </p>
         </div>
       </div>
