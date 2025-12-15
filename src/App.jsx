@@ -139,7 +139,7 @@ export default function UpworkKISSGenerator() {
           </div>
 
           <p className="text-gray-600 mb-6">
-            Paste the job description below and get a casual, punchy proposal that sounds like you're actually talking to a human. Automatically detects and follows special instructions too.
+            Paste the job description below and get a casual, punchy proposal that sounds like you're actually talking to a human. KISS ( Keep It Short, Stupid)
           </p>
 
           {/* NEW: Upgrade prompt when limit reached */}
