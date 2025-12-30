@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog - KISS Proposal Generator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100">
+  <!-- Header -->
+  <div class="bg-white border-b">
+    <div class="max-w-6xl mx-auto px-4 py-4">
+      <div class="flex items-center justify-between">
+        <a href="/" class="text-2xl font-bold text-indigo-600 hover:text-indigo-700">
+          KISS Proposal
+        </a>
+        <nav class="flex gap-6 text-sm font-medium">
+          <a href="/" class="text-gray-600 hover:text-indigo-600">Home</a>
+          <a href="/blog.html" class="text-indigo-600">Blog</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-16">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">
+        Freelancing Knowledge Hub
+      </h1>
+      <p class="text-xl text-indigo-100 max-w-2xl mx-auto">
+        Learn how to win clients, scale your income, and build a sustainable freelance business
+      </p>
+    </div>
+  </div>
+
+  <!-- Blog Posts Container -->
+  <div class="max-w-6xl mx-auto px-4 py-8">
+    <div id="blog-posts" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Posts will be loaded here by JavaScript -->
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="bg-gray-900 text-white py-8 mt-16">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <p class="text-gray-400 text-sm">© 2025 Ritchie L. Suico | All Rights Reserved</p>
+    </div>
+  </div>
+
+  <script>
+    // Load blog posts
+    fetch('/blog/posts.json')
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById('blog-posts');
+        const posts = data.posts.filter(p => p.published);
+        
+        container.innerHTML = posts.map(post => `
+          <a href="/blog/${post.slug}.html" class="bg-white rounded-xl shadow-md hover:shadow-xl transition-all p-6 block">
+            <span class="text-xs font-semibold text-indigo-600 uppercase mb-2 block">${post.category}</span>
+            <h2 class="text-xl font-bold text-gray-900 mb-3 hover:text-indigo-600">${post.title}</h2>
+            <p class="text-sm text-gray-600 mb-3">${post.excerpt}</p>
+            <div class="text-xs text-gray-500">${post.readTime}</div>
+          </a>
+        `).join('');
+      });
+  </script>
+</body>
+</html>
