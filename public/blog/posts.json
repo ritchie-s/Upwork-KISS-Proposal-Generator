@@ -1,0 +1,26 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "slug": "upwork-proposals-that-get-read",
+      "title": "How to Write Upwork Proposals That Actually Get Read",
+      "excerpt": "Learn the proven KISS method to write Upwork proposals that hook clients in 2-3 sentences.",
+      "category": "Upwork Tips",
+      "date": "2025-01-02",
+      "readTime": "8 min read",
+      "keywords": "upwork proposals, upwork cover letter, freelance proposals",
+      "published": true
+    },
+    {
+      "id": 2,
+      "slug": "kiss-method-shorter-proposals",
+      "title": "The KISS Method: Why Shorter Proposals Win More Jobs",
+      "excerpt": "Discover why short Upwork proposals have 3x higher response rates than long ones.",
+      "category": "Upwork Tips",
+      "date": "2025-01-05",
+      "readTime": "7 min read",
+      "keywords": "KISS method, short proposals, upwork success rate",
+      "published": true
+    }
+  ]
+}
