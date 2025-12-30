@@ -149,7 +149,7 @@ export default function UpworkKISSGenerator() {
       <div className="bg-gradient-to-r from-gray-900 to-gray-800 border-b-4 border-indigo-500">
         <div className="max-w-7xl mx-auto">
           <a 
-            href={topAds[currentAd].link}
+            href={`/blog/${post.slug}.html`}
             target="_blank"
             rel="noopener noreferrer"
             className={`block bg-gradient-to-r ${topAds[currentAd].color} px-6 py-4 hover:opacity-90 transition-opacity`}
@@ -182,7 +182,7 @@ export default function UpworkKISSGenerator() {
                 </p>
               </div>
               <a
-                href="https://syllaby.io/?via=ritchie46"
+                href="/blog.html"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white text-center font-semibold py-3 rounded-lg transition-all"
