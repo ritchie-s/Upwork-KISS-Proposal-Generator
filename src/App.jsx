@@ -25,7 +25,7 @@ export default function UpworkKISSGenerator() {
       title: "AI-Powered Content Creation",
       description: "Create viral content ideas in minutes with Syllaby",
       cta: "Get Started Free",
-      link: "https://syllaby.io?ref=yourcode",
+      link: "https://syllaby.io/?via=ritchie46",
       color: "from-purple-500 to-pink-600"
     }
   ];
@@ -222,7 +222,7 @@ export default function UpworkKISSGenerator() {
                     <h1 className="text-3xl font-bold text-gray-800">
                       Upwork KISS Proposal Generator
                     </h1>
-                    <p className="text-sm text-gray-500 mt-1">by Ritchie L. Suico</p>
+                    <p className="text-sm text-gray-500 mt-1">by ritchielab.s</p>
                   </div>
                 </div>
                 <div className="text-right">
@@ -414,7 +414,7 @@ export default function UpworkKISSGenerator() {
           </div>
           <div className="border-t border-gray-800 pt-6 text-center text-gray-400 text-sm">
             <p className="mb-2">✨ Client Dust For You. All Glory To God ✨</p>
-            <p>© 2025 Ritchie L. Suico | All Rights Reserved</p>
+            <p>© 2025 ritchielab.s | All Rights Reserved</p>
           </div>
         </div>
       </div>
