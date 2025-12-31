@@ -238,7 +238,7 @@ export default function UpworkKISSGenerator() {
               </div>
 
               <p className="text-gray-600 mb-6">
-                Generate casual, punchy proposals that hook clients in seconds. Automatically detects special instructions too!
+                Generate casual, punchy proposals that hook clients in seconds.
               </p>
 
               {isLimitReached && (
@@ -401,7 +401,7 @@ export default function UpworkKISSGenerator() {
               <h3 className="font-bold text-lg mb-3">Recommended Tools</h3>
               <ul className="space-y-2 text-gray-400">
                 <li><a href="https://systeme.io/?sa=sa0039793676c8635eb32752ef9e9001c4766027f6" target="_blank" rel="noopener noreferrer" className="hover:text-white">Systeme.io</a></li>
-                <li><a href="https://syllaby.io?ref=yourcode" target="_blank" rel="noopener noreferrer" className="hover:text-white">Syllaby</a></li>
+                <li><a href="https://syllaby.io/?via=ritchie46" target="_blank" rel="noopener noreferrer" className="hover:text-white">Syllaby</a></li>
               </ul>
             </div>
             <div>
