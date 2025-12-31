@@ -359,7 +359,7 @@ export default function UpworkKISSGenerator() {
                   <BookOpen className="w-8 h-8 text-indigo-600" />
                   <h2 className="text-2xl font-bold text-gray-800">Latest from the Blog</h2>
                 </div>
-                <a href="/blog" className="text-indigo-600 hover:text-indigo-700 font-semibold text-sm">
+                <a href="/blog.html" className="text-indigo-600 hover:text-indigo-700 font-semibold text-sm">
                   View All →
                 </a>
               </div>
@@ -368,7 +368,7 @@ export default function UpworkKISSGenerator() {
                 {featuredPosts.map((post, idx) => (
                   <a
                     key={idx}
-                    href={`/blog/${post.slug}`}
+                    href={`/blog/${post.slug}.html`}
                     className="group border-2 border-gray-200 rounded-xl p-5 hover:border-indigo-500 hover:shadow-lg transition-all"
                   >
                     <div className="text-xs font-semibold text-indigo-600 mb-2">{post.category}</div>
@@ -393,7 +393,7 @@ export default function UpworkKISSGenerator() {
               <h3 className="font-bold text-lg mb-3">Quick Links</h3>
               <ul className="space-y-2 text-gray-400">
                 <li><a href="/" className="hover:text-white">Home</a></li>
-                <li><a href="/blog" className="hover:text-white">Blog</a></li>
+                <li><a href="/blog.html" className="hover:text-white">Blog</a></li>
                 <li><a href="/resources" className="hover:text-white">Resources</a></li>
               </ul>
             </div>
