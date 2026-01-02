@@ -23,15 +23,15 @@
       "published": true
     },
 {
-  "id": 3,
-  "slug": "building-a-freelance-automation-tools",
-  "title": "Building a Freelance Business with Automation Tools",
-  "excerpt": "Learn how to scale $2k to $10k/month using simple automation tools",
-  "category": "Business",
-  "date": "2025-01-10",
-  "readTime": "6 min read",
-  "keywords": "freelance automation, freelance business tools, scale freelancing, freelance income, productivity tools",
-  "published": true
-}
+     "id": 3,
+     "slug": "freelance-automation-tools",
+     "title": "Building a Freelance Business with Automation Tools",
+     "excerpt": "Learn how to scale $2k to $10k/month using simple automation tools",
+     "category": "Business",
+     "date": "2025-01-10",
+     "readTime": "10 min read",
+     "keywords": "freelance automation, freelance business tools, scale freelancing",
+     "published": true
+   }
 ]
 }
