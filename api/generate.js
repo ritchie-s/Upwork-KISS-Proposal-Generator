@@ -18,21 +18,22 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Description is required' });
   }
 
-  if (!process.env.GROQ_API_KEY) {
+  if (!process.env.ANTHROPIC_API_KEY) {
     return res.status(500).json({
-      error: 'GROQ_API_KEY not configured in Vercel'
+      error: 'ANTHROPIC_API_KEY not configured in Vercel'
     });
   }
 
   try {
-    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.GROQ_API_KEY}`
+        'x-api-key': process.env.ANTHROPIC_API_KEY,
+        'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
-        model: 'llama-3.3-70b-versatile',
+        model: 'claude-haiku-4-5-20251001',
         max_tokens: 1000,
         messages: [
           {
@@ -71,14 +72,14 @@ Return ONLY a JSON object (no markdown, no backticks):
 
     if (!response.ok) {
       const errorData = await response.json();
-      console.error('Groq API error:', errorData);
+      console.error('Anthropic API error:', errorData);
       return res.status(response.status).json({
-        error: errorData.error?.message || 'Groq API request failed'
+        error: errorData.error?.message || 'API request failed'
       });
     }
 
     const data = await response.json();
-    const text = data.choices[0].message.content;
+    const text = data.content[0].text;
 
     // Clean and parse JSON
     const clean = text.replace(/```json|```/g, '').trim();
