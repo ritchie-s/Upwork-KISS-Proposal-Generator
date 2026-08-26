@@ -414,7 +414,7 @@ export default function UpworkKISSGenerator() {
           </div>
           <div className="border-t border-gray-800 pt-6 text-center text-gray-400 text-sm">
             <p className="mb-2">✨ Client Dust For You. All Glory To God ✨</p>
-            <p>© 2025 ritchielab.s | All Rights Reserved</p>
+            <p>© 2026 ritchielab.s | All Rights Reserved</p>
           </div>
         </div>
       </div>
