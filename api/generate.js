@@ -4,12 +4,10 @@ export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  // Handle preflight
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
 
-  // Only allow POST requests
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -20,22 +18,22 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Description is required' });
   }
 
-  // Check if API key exists
-  if (!process.env.OPENAI_API_KEY) {
-    return res.status(500).json({ 
-      error: 'OPENAI_API_KEY not configured in Vercel' 
+  if (!process.env.ANTHROPIC_API_KEY) {
+    return res.status(500).json({
+      error: 'ANTHROPIC_API_KEY not configured in Vercel'
     });
   }
 
   try {
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
+        'x-api-key': process.env.ANTHROPIC_API_KEY,
+        'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
-        model: 'gpt-3.5-turbo',
+        model: 'claude-haiku-4-5-20251001',
         max_tokens: 1000,
         messages: [
           {
@@ -74,24 +72,24 @@ Return ONLY a JSON object (no markdown, no backticks):
 
     if (!response.ok) {
       const errorData = await response.json();
-      console.error('OpenAI API error:', errorData);
-      return res.status(response.status).json({ 
-        error: errorData.error?.message || 'OpenAI API request failed' 
+      console.error('Anthropic API error:', errorData);
+      return res.status(response.status).json({
+        error: errorData.error?.message || 'API request failed'
       });
     }
 
     const data = await response.json();
-    const text = data.choices[0].message.content;
-    
-    // Clean up the response and parse JSON
-    const cleanText = text.replace(/```json|```/g, '').trim();
-    const parsed = JSON.parse(cleanText);
-    
+    const text = data.content[0].text;
+
+    // Clean and parse JSON
+    const clean = text.replace(/```json|```/g, '').trim();
+    const parsed = JSON.parse(clean);
+
     return res.status(200).json(parsed);
-  } catch (error) {
-    console.error('Server error:', error);
-    return res.status(500).json({ 
-      error: error.message || 'Internal server error' 
+  } catch (err) {
+    console.error('Server error:', err);
+    return res.status(500).json({
+      error: err.message || 'Internal server error'
     });
   }
 }
