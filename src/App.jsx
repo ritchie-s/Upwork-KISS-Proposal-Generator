@@ -2008,16 +2008,13 @@ export default function App() {
             </a>
           </p>
 
-          <p
-            style={{
-              marginTop: 8,
-              fontSize: 12,
-              opacity: 0.7,
-            }}
-          >
-            © 2026 All Rights Reserved · This site contains
-            affiliate links
-          </p>
+          <p style={{ marginTop: 8, fontSize: 12, opacity: 0.7 }}>
+  © 2026 All Rights Reserved ·{" "}
+  <a href="/privacy.html" style={{ color: "#FFD6E4", textDecoration: "underline" }}>
+    Privacy Policy
+  </a>
+  {" "}· This site contains affiliate links
+</p>
         </div>
       </footer>
     </div>
